@@ -1,6 +1,7 @@
 import psycopg2
 from getpass import getpass
 
+
 def crear_inventario_emprendimiento():
     '''
     Crea la base de datos 'inventario_emprendimiento' y luego a su usuario 'usuario_emprendimiento' 
@@ -53,6 +54,7 @@ def crear_esquema_bd(nombre_script: str):
     '''
     run_script = True
 
+    # Conexión a la nueva base de datos
     try:
         conn_sr = psycopg2.connect(
             database="inventario_emprendimiento",
@@ -66,6 +68,7 @@ def crear_esquema_bd(nombre_script: str):
         run_script = False
         print(f"# Error al conectar a inventario_emprendimiento\nDetalle -> {e}")
     
+    # Crear el modelo
     if run_script:
         try:
             with open(f"{nombre_script}.sql", 'r', encoding="utf-8") as f:
@@ -89,6 +92,7 @@ def crear_esquema_bd(nombre_script: str):
 
 
 if __name__ == "__main__":
+    
     # Conexión a postgres en ámbito global
     clave = getpass("Ingrese su contraseña del usuario postgres: ")
     try: 
