@@ -2,7 +2,7 @@
 
 ## Tareas a realizar
 
-| Tarea                     |Estado(✅ - ✏️ - ❌)|
+| Tarea                     |Estado(✅-✏️-❌)|
 |---------------------------|-------------------|
 | ***Modelo E-R:*** diagrama de entidad-relación representando el modelo lógico del sistema. |❌|
 | ***Modelo Relacional Normalizado:*** conversión del modelo E-R a tablas, con claves primarias y foráneas. |❌|
