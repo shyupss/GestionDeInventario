@@ -4,11 +4,11 @@
 
 | Tarea                     |Estado(✅-✏️-❌)|
 |---------------------------|-------------------|
-| ***Modelo E-R:*** diagrama de entidad-relación representando el modelo lógico del sistema. |❌|
-| ***Modelo Relacional Normalizado*** |❌|
+| ***Modelo E-R:*** diagrama de entidad-relación. |❌|
+| ***Modelo Relacional Normalizado.*** |❌|
 | ***Esquema de eventos en MongoDB o Redis***, con ejemplos de inserciones. |❌|
-| ***Base de datos con datos de prueba*** (productos, ventas, proveedores, trabajadores…). |❌|
-| ***Consultas SQL***|❌|
+| ***Base de datos con datos de prueba*** (productos, ventas, ...). |❌|
+| ***Consultas SQL*** relevantes. |❌|
 | ***Consultas sobre la base no relacional***|❌|
-| ***API Web*** para interactuar con el sistema |❌|
-| ***Cliente simple (web o Python)*** para consultar productos, registrar ventas y visualizar eventos.|❌|
+| ***API Web*** para interactuar con el sistema. |❌|
+| ***Cliente simple (web o Python)*** para realizar consultas. |❌|
