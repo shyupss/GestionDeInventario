@@ -4,8 +4,8 @@
 
 | Tarea                     |Estado(✅-✏️-❌)|
 |---------------------------|-------------------|
-| ***Modelo E-R:*** diagrama de entidad-relación. |❌|
-| ***Modelo Relacional Normalizado.*** |❌|
+| ***Modelo E-R:*** diagrama de entidad-relación. |✅|
+| ***Modelo Relacional Normalizado.*** |✅|
 | ***Esquema de eventos en MongoDB o Redis***, con ejemplos de inserciones. |❌|
 | ***Base de datos con datos de prueba*** (productos, ventas, ...). |❌|
 | ***Consultas SQL*** relevantes. |❌|
