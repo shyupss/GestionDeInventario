@@ -1,4 +1,4 @@
-#Proyecto guiado – Sistema de Gestión de Inventario para emprendimientos locales
+# Proyecto guiado – Sistema de Gestión de Inventario para emprendimientos locales
 
 ## 1. Contexto General
 
