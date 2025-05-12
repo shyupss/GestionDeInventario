@@ -51,6 +51,7 @@ def crear_esquema_bd():
     '''
     Crea el esquema de la base de datos de análisis del sistema de emprendimiento\n
     Tener el archivo sql en la misma carpeta que este script python pls\n
+    Link dbdiagram: https://dbdiagram.io/d/InventarioEmprendimiento-681f06245b2fc4582fff5e2b
     '''
     run_script = True
 
@@ -71,7 +72,7 @@ def crear_esquema_bd():
     # Crear el modelo
     if run_script:
         try:
-            with open("InventarioEmprendimiento.sql", 'r', encoding="utf-8") as f:
+            with open("modelo_db/InventarioEmprendimiento.sql", 'r', encoding="utf-8") as f:
                 script = f.read()
             
             for statement in script.split(';'):

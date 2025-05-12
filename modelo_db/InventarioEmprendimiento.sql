@@ -48,7 +48,7 @@ CREATE TABLE "productos_ventas" (
   "id_venta" integer NOT NULL,
   "precio_unitario" numeric(10,2),
   "cantidad" integer,
-  "primary" key(id_producto,id_venta)
+  PRIMARY KEY ("id_producto","id_venta")
 );
 
 CREATE TABLE "productos_compras" (
@@ -56,7 +56,7 @@ CREATE TABLE "productos_compras" (
   "id_compra" integer NOT NULL,
   "precio_unitario" numeric(10,2),
   "cantidad" integer,
-  "primary" key(id_producto,id_venta)
+  PRIMARY KEY ("id_producto","id_compra")
 );
 
 ALTER TABLE "productos" ADD FOREIGN KEY ("id_categoria") REFERENCES "categorias" ("id_categoria");
