@@ -47,7 +47,7 @@ def crear_inventario_emprendimiento():
         print(f"# Error con la creación de inventario_emprendimientos\nDetalle -> {e}")
 
 # Crea el modelo de la bd
-def crear_esquema_bd(nombre_script: str):
+def crear_esquema_bd():
     '''
     Crea el esquema de la base de datos de análisis del sistema de emprendimiento\n
     Tener el archivo sql en la misma carpeta que este script python pls\n
@@ -71,7 +71,7 @@ def crear_esquema_bd(nombre_script: str):
     # Crear el modelo
     if run_script:
         try:
-            with open(f"{nombre_script}.sql", 'r', encoding="utf-8") as f:
+            with open("InventarioEmprendimiento.sql", 'r', encoding="utf-8") as f:
                 script = f.read()
             
             for statement in script.split(';'):
@@ -102,9 +102,8 @@ if __name__ == "__main__":
         )
         cur = conn.cursor()
         print(f"> Conexión exitosa\nUser: {conn.info.user}\nBase de datos: {conn.info.dbname}")
-        nombre_script = input("Ingrese el nombre del script: ").strip(".sql")
         crear_inventario_emprendimiento()
-        crear_esquema_bd(nombre_script)
+        crear_esquema_bd()
 
         cur.close()
         conn.close()
