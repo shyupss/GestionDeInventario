@@ -10,6 +10,22 @@ python -m venv .venv                # Con esto generas el entorno virtual
 pip install -r requirements.txt     # Con esto instalas las dependencias necesarias para trabajar con el entorno virtual
 ```
 
+### Notarás que el entorno virtual está activado cuando en tu terminal ves algo del estilo:
+
+```
+(.venv) PS C:\...
+```
+
+### Importante: Solo si quieres instalar más dependencias para hacer pruebas, debes activar nuevamente el entorno virtual en caso de que no esté activado, NO ES NECESARIO TENER EL ENTORNO ACTIVADO PARA TRABAJAR DE FORMA CORRIENTE, solo se activa para instalar dependencias dentro del proyecyo, para activar este se utiliza el comando mencionado anteriormente.
+
+Notar que luego de hacer este proceso, en VScode deberías seleccionar como interprete a Python pero con el entorno virtual como zona de trabajo, esto lo puedes hacer haciendo:
+
+```
+"Ctrl + Shift + P" -> Python: Select Interpreter -> Python X.XX ('.venv':venv)
+```
+
+Con esto, el entorno virtual debería estar cargado y funcionando correctamente dentro de tu pc localmente.
+
 ## Tareas a realizar
 
 | Tarea                     |Estado(✅-✏️-❌)|
