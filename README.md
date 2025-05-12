@@ -2,7 +2,7 @@
 
 ## Requerimientos (Instalar)
 
-Para instalar los requerimientos del proyecto, necesitas crear un entorno virtual luego de clonar el repositorio, esto se hace con los siguientes comandos:
+Para instalar los requerimientos del proyecto, necesitas crear un entorno virtual luego de clonar el repositorio, esto se hace con los siguientes comandos (ejecutar en directorio raíz del proyecto):
 
 ```
 python -m venv .venv                # Con esto generas el entorno virtual
