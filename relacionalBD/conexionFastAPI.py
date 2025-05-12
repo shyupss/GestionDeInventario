@@ -3,7 +3,7 @@ import psycopg2
 
 app = FastAPI()
 
-# Conexión a PostgreSQL
+# Conexión a la BD relacional
 conn = psycopg2.connect(
 	host="localhost",
 	database="inventario_emprendimiento",
