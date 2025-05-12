@@ -1,0 +1,3 @@
+User: usuario_emprendimiento
+password_user: 1234
+data_base name: inventario_emprendimiento

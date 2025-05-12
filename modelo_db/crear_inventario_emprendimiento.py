@@ -1,7 +1,7 @@
 import psycopg2
 from getpass import getpass
 
-
+# Crea la base de datos, el usuario, su contraseña y otorga los permisos al usuario desde el user "postgress"
 def crear_inventario_emprendimiento():
     '''
     Crea la base de datos 'inventario_emprendimiento' y luego a su usuario 'usuario_emprendimiento' 
@@ -46,7 +46,7 @@ def crear_inventario_emprendimiento():
         conn.rollback()
         print(f"# Error con la creación de inventario_emprendimientos\nDetalle -> {e}")
 
-
+# Crea el modelo de la bd
 def crear_esquema_bd(nombre_script: str):
     '''
     Crea el esquema de la base de datos de análisis del sistema de emprendimiento\n
@@ -88,8 +88,6 @@ def crear_esquema_bd(nombre_script: str):
         
         cur_sr.close()
         conn_sr.close()
-
-
 
 if __name__ == "__main__":
     
