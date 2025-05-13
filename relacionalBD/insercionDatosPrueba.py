@@ -8,16 +8,16 @@ from faker import Faker
 MAX: int = int(10e3)
 
 # Llamamos los json con datos para la selección
-with open("./categorias.json", "r", encoding="utf-8") as f:
+with open("./data/categorias.json", "r", encoding="utf-8") as f:
     Categorias = json.load(f)
     
-with open("./proveedores.json", "r", encoding="utf-8") as f:
+with open("./data/proveedores.json", "r", encoding="utf-8") as f:
     Proveedores = json.load(f)
 
-with open("./productos.json", "r", encoding="utf-8") as f:
+with open("./data/productos.json", "r", encoding="utf-8") as f:
     Productos = json.load(f)
 
-with open("./unidadesMedida.json", "r", encoding="utf-8") as f:
+with open("./data/unidadesMedida.json", "r", encoding="utf-8") as f:
     UnidadesMedida = json.load(f)
     
 print(Categorias)

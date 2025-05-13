@@ -72,7 +72,7 @@ def crear_esquema_bd():
     # Crear el modelo
     if run_script:
         try:
-            with open("../InventarioEmprendimiento.sql", 'r', encoding="utf-8") as f:
+            with open("./data/InventarioEmprendimiento.sql", 'r', encoding="utf-8") as f:
                 script = f.read()
             
             for statement in script.split(';'):
