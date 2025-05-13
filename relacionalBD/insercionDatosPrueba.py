@@ -84,7 +84,7 @@ conn.commit()
 # Inserción de datos sobre la tabla "ventas"
 for id in range (MAX):
 	precio_total = round(random.uniform(1e4, 1e6), 2)
-	cur.execute("INSERT INTO ventas (id_venta, fecha, precio_total, id_proveedor) VALUES (%s, %s, %s, %s)",
+	cur.execute("INSERT INTO ventas (id_venta, fecha, precio_total, id_vendedor) VALUES (%s, %s, %s, %s)",
                (id+1, fake.date(), precio_total, random.randint(1, len(Proveedores)))
                )
 conn.commit()
