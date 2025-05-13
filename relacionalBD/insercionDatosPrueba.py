@@ -12,7 +12,13 @@ with open("./categorias.json", "r", encoding="utf-8") as f:
     Categorias = json.load(f)
     
 with open("./proveedores.json", "r", encoding="utf-8") as f:
-    Proveedores = json.load(f) 
+    Proveedores = json.load(f)
+
+with open("./productos.json", "r", encoding="utf-8") as f:
+    Productos = json.load(f)
+
+with open("./unidadesMedida.json", "r", encoding="utf-8") as f:
+    UnidadesMedida = json.load(f)
     
 print(Categorias)
 
@@ -37,14 +43,14 @@ def campbellKeyOfString(text: str) -> str:
 	return text
 
 # Inserción de datos sobre la tabla "categorias"
-for id, categoria in (enumerate(Categorias)):
+for id, categoria in enumerate(Categorias):
 	cur.execute("INSERT INTO categorias (id_categoria, nombre) VALUES (%s, %s)",
                (id+1, categoria)
                )
 conn.commit()
 
 # Inserción de datos sobre la tabla de "proveedores"
-for id, proveedor in (enumerate(Proveedores)):
+for id, proveedor in enumerate(Proveedores):
 	cur.execute("INSERT INTO proveedores (id_proveedor, nombre, correo, telefono) VALUES (%s, %s, %s, %s)",
                (id+1, proveedor, fake.email(domain=f"{campbellKeyOfString(proveedor)}.com"), fake.phone_number())
                )
@@ -58,9 +64,28 @@ for id in range (30):
 conn.commit()
 
 # Inserción de datos sobre la tabla "compras"
-for i in range (MAX):
+for id in range (MAX):
+	precio_total = round(random.uniform(1e4, 1e6), 2)
+	cur.execute("INSERT INTO compras (id_compra, fecha, precio_total, id_proveedor) VALUES (%s, %s, %s, %s)",
+               (id+1, fake.date(), precio_total, random.randint(1, len(Proveedores)))
+               )
+conn.commit()
+
+# Inserción de datos sobre la tabla "productos"
+for id, producto in enumerate(Productos):
+	precio_unitario = round(random.uniform(1e2, 1e4), 2)
+	stock = random.randint(1000, 10000)
+	min_stock = random.randint(10, 100)
 	cur.execute("INSERT INTO productos (id_producto, nombre, descripcion, precio_unitario, unidad_medida, stock, min_stock, id_categoria) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-               (id+1, )
+               (id+1, producto, "desc general", precio_unitario, random.choice(UnidadesMedida), stock, min_stock, random.randint(1, len(Categorias)))
+               )
+conn.commit()
+
+# Inserción de datos sobre la tabla "ventas"
+for id in range (MAX):
+	precio_total = round(random.uniform(1e4, 1e6), 2)
+	cur.execute("INSERT INTO ventas (id_venta, fecha, precio_total, id_proveedor) VALUES (%s, %s, %s, %s)",
+               (id+1, fake.date(), precio_total, random.randint(1, len(Proveedores)))
                )
 conn.commit()
 
