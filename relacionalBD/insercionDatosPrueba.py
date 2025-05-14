@@ -109,8 +109,9 @@ for _ in range (MAX):
 		cur.execute("INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
 				(id_producto, id_compra, precio_unitario, cantidad)
 				)
-	except Exception:
-		...
+	except Exception as e:
+		conn.rollback()
+		print(f"Error en la inserción de datos\nDetalle -> {e}")
 conn.commit()
 
 # Insercion de datos sobre la tabla "productos_venta"
