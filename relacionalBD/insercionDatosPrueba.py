@@ -85,7 +85,53 @@ conn.commit()
 for id in range (MAX):
 	precio_total = round(random.uniform(1e4, 1e6), 2)
 	cur.execute("INSERT INTO ventas (id_venta, fecha, precio_total, id_vendedor) VALUES (%s, %s, %s, %s)",
-               (id+1, fake.date(), precio_total, random.randint(1, len(Proveedores)))
+               (id+1, fake.date(), precio_total, random.randint(1, 30))
+               )
+conn.commit()
+
+# Inserción de datos sobre la tabla "productos_compras"
+for _ in range (MAX):
+	# Obtengo un par id_producto y id_compra válidos
+	id_producto = random.randint(1, len(Productos))
+	id_compra = random.randint(1, MAX)
+
+	# Obtengo el precio unitario de ESE producto
+	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto))
+	precio_unitario = cur.fetchone()
+
+	# Si no se encontro, saltamos a la siguiente iteracion del for
+	if precio_unitario is None:
+		continue
+	precio_unitario = precio_unitario[0]
+
+	# Cantidad comprada
+	cantidad = random.randint(1, 200)
+
+	cur.execute("INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+               (id_producto, id_compra, precio_unitario, cantidad)
+               )
+conn.commit()
+
+# Insercion de datos sobre la tabla "productos_venta"
+for _ in range(MAX):
+	# Obtengo un par id_producto y id_venta válidos
+	id_producto = random.randint(1, len(Productos))
+	id_venta = random.randint(1, MAX)
+
+	# Obtengo el precio unitario de ESE producto
+	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto))
+	precio_unitario = cur.fetchone()
+
+	# Si no se encontro, saltamos a la siguiente iteracion del for
+	if precio_unitario is None:
+		continue
+	precio_unitario = precio_unitario[0]
+
+	# Cantidad comprada
+	cantidad = random.randint(1, 200)
+
+	cur.execute("INSERT INTO productos_venta (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+               (id_producto, id_compra, precio_unitario, cantidad)
                )
 conn.commit()
 
