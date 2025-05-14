@@ -132,11 +132,12 @@ for _ in range(MAX):
 		# Cantidad comprada
 		cantidad = random.randint(1, 200)
 
-		cur.execute("INSERT INTO productos_venta (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+		cur.execute("INSERT INTO productos_ventas (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
 				(id_producto, id_compra, precio_unitario, cantidad)
 				)
-	except Exception:
-		...
+	except Exception as e:
+		conn.rollback()
+		print(f"Error en la inserción de datos\nDetalle -> {e}")
 conn.commit()
 
 cur.close()

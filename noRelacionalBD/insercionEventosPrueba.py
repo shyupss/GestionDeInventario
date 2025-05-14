@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 from random import choice
+from faker import Faker
 
+fake = Faker()
 eventos: list = []
 posibles_eventos: list = [
     "venta_realizada", 
@@ -12,12 +14,31 @@ posibles_eventos: list = [
     "login_fallido"
 ]
 
-def crear_eventos():
 
+def llenar_formulario(evento: str) -> dict[str, str]:
+    match evento:
+            case "venta_realizada":
+                ...
+            case "stock_bajo":
+                ...
+            case "producto_agotado":
+                ...
+            case "nueva_compra":
+                ...
+            case "producto_agregado":
+                ...
+            case "usuario_creado":
+                ...
+            case "login_fallido":
+                ...
+
+
+def crear_eventos():
     for i in range(100):
-        evento = {}
         evento_seleccionado = choice(posibles_eventos)
         print(f"Se va a registrar un evento {evento_seleccionado}")
+        evento = llenar_formulario(evento_seleccionado)
+  
 
 
 def main():
