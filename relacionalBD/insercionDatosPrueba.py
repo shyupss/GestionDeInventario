@@ -96,7 +96,7 @@ for _ in range (MAX):
 	id_compra = random.randint(1, MAX)
 
 	# Obtengo el precio unitario de ESE producto
-	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto))
+	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
 	precio_unitario = cur.fetchone()
 
 	# Si no se encontro, saltamos a la siguiente iteracion del for
@@ -105,7 +105,7 @@ for _ in range (MAX):
 	precio_unitario = precio_unitario[0]
 
 	# Cantidad comprada
-	cantidad = random.randint(1, 200)
+	cantidad = random.randint(300, 500)
 
 	cur.execute("INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
                (id_producto, id_compra, precio_unitario, cantidad)
@@ -119,7 +119,7 @@ for _ in range(MAX):
 	id_venta = random.randint(1, MAX)
 
 	# Obtengo el precio unitario de ESE producto
-	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto))
+	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
 	precio_unitario = cur.fetchone()
 
 	# Si no se encontro, saltamos a la siguiente iteracion del for
