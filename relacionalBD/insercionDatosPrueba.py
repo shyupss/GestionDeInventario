@@ -87,58 +87,76 @@ for id in range (MAX):
                )
 conn.commit()
 
+datosProductosCompras = []
+setParesProductoCompra = set()
 # Inserción de datos sobre la tabla "productos_compras"
 for _ in range (MAX):
-	try: 
-		# Obtengo un par id_producto y id_compra válidos
-		id_producto = random.randint(1, len(Productos))
-		id_compra = random.randint(1, MAX)
+	# Obtengo un par id_producto y id_compra válidos
+	id_producto = random.randint(1, len(Productos))
+	id_compra = random.randint(1, MAX)
 
-		# Obtengo el precio unitario de ESE producto
-		cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
-		precio_unitario = cur.fetchone()
+	# Si la clave existe, siguiente iteración
+	if ((id_producto, id_compra) in setParesProductoCompra):
+		continue
+	setParesProductoCompra.add((id_producto, id_compra))
 
-		# Si no se encontro, saltamos a la siguiente iteracion del for
-		if precio_unitario is None:
-			continue
-		precio_unitario = precio_unitario[0]
+	# Obtengo el precio unitario de ESE producto
+	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
+	precio_unitario = cur.fetchone()
 
-		# Cantidad comprada
-		cantidad = random.randint(300, 500)
+	# Si no se encontró, saltamos a la siguiente iteración del for
+	if precio_unitario is None:
+		continue
+	precio_unitario = precio_unitario[0]
 
-		cur.execute("INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
-				(id_producto, id_compra, precio_unitario, cantidad)
-				)
-	except Exception as e:
-		conn.rollback()
-		print(f"Error en la inserción de datos\nDetalle -> {e}")
+	# Cantidad comprada
+	cantidad = random.randint(300, 500)
+
+	datosProductosCompras.append((id_producto, id_compra, precio_unitario, cantidad))
+try:
+	cur.executemany(
+		"INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+		datosProductosCompras
+	)
+except Exception as e:
+	print(f"Error sobre la insercion sobre la BD: productos_compras\n Error -> {e} <--")
+
 conn.commit()
 
-# Insercion de datos sobre la tabla "productos_venta"
+datosProductosVentas = []
+setParesProductoVenta = set()
+# Insercion de datos sobre la tabla "productos_ventas"
 for _ in range(MAX):
-	try: 
-		# Obtengo un par id_producto y id_venta válidos
-		id_producto = random.randint(1, len(Productos))
-		id_venta = random.randint(1, MAX)
+	# Obtengo un par id_producto y id_venta válidos
+	id_producto = random.randint(1, len(Productos))
+	id_venta = random.randint(1, MAX)
 
-		# Obtengo el precio unitario de ESE producto
-		cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
-		precio_unitario = cur.fetchone()
+	# Si la clave existe, siguiente iteración
+	if ((id_producto, id_venta) in setParesProductoVenta):
+		continue
+	setParesProductoVenta.add((id_producto, id_venta))
 
-		# Si no se encontro, saltamos a la siguiente iteracion del for
-		if precio_unitario is None:
-			continue
-		precio_unitario = precio_unitario[0]
+	# Obtengo el precio unitario de ESE producto
+	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
+	precio_unitario = cur.fetchone()
 
-		# Cantidad comprada
-		cantidad = random.randint(1, 200)
+	# Si no se encontro, saltamos a la siguiente iteracion del for
+	if precio_unitario is None:
+		continue
+	precio_unitario = precio_unitario[0]
 
-		cur.execute("INSERT INTO productos_ventas (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
-				(id_producto, id_compra, precio_unitario, cantidad)
-				)
-	except Exception as e:
-		conn.rollback()
-		print(f"Error en la inserción de datos\nDetalle -> {e}")
+	# Cantidad comprada
+	cantidad = random.randint(1, 200)
+
+	datosProductosVentas.append((id_producto, id_venta, precio_unitario, cantidad))
+
+try:
+	cur.executemany(
+		"INSERT INTO productos_ventas (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+		datosProductosCompras
+	)
+except Exception as e:
+	print(f"Error en la insercion sobre la BD: productos_ventas\n Error -> {e} <--")
 conn.commit()
 
 cur.close()
