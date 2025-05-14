@@ -19,8 +19,6 @@ with open("./data/productos.json", "r", encoding="utf-8") as f:
 
 with open("./data/unidadesMedida.json", "r", encoding="utf-8") as f:
     UnidadesMedida = json.load(f)
-    
-print(Categorias)
 
 # Creamos el objeto fake
 fake = Faker()
@@ -91,48 +89,54 @@ conn.commit()
 
 # Inserción de datos sobre la tabla "productos_compras"
 for _ in range (MAX):
-	# Obtengo un par id_producto y id_compra válidos
-	id_producto = random.randint(1, len(Productos))
-	id_compra = random.randint(1, MAX)
+	try: 
+		# Obtengo un par id_producto y id_compra válidos
+		id_producto = random.randint(1, len(Productos))
+		id_compra = random.randint(1, MAX)
 
-	# Obtengo el precio unitario de ESE producto
-	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
-	precio_unitario = cur.fetchone()
+		# Obtengo el precio unitario de ESE producto
+		cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
+		precio_unitario = cur.fetchone()
 
-	# Si no se encontro, saltamos a la siguiente iteracion del for
-	if precio_unitario is None:
-		continue
-	precio_unitario = precio_unitario[0]
+		# Si no se encontro, saltamos a la siguiente iteracion del for
+		if precio_unitario is None:
+			continue
+		precio_unitario = precio_unitario[0]
 
-	# Cantidad comprada
-	cantidad = random.randint(300, 500)
+		# Cantidad comprada
+		cantidad = random.randint(300, 500)
 
-	cur.execute("INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
-               (id_producto, id_compra, precio_unitario, cantidad)
-               )
+		cur.execute("INSERT INTO productos_compras (id_producto, id_compra, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+				(id_producto, id_compra, precio_unitario, cantidad)
+				)
+	except Exception:
+		...
 conn.commit()
 
 # Insercion de datos sobre la tabla "productos_venta"
 for _ in range(MAX):
-	# Obtengo un par id_producto y id_venta válidos
-	id_producto = random.randint(1, len(Productos))
-	id_venta = random.randint(1, MAX)
+	try: 
+		# Obtengo un par id_producto y id_venta válidos
+		id_producto = random.randint(1, len(Productos))
+		id_venta = random.randint(1, MAX)
 
-	# Obtengo el precio unitario de ESE producto
-	cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
-	precio_unitario = cur.fetchone()
+		# Obtengo el precio unitario de ESE producto
+		cur.execute("SELECT precio_unitario FROM productos WHERE id_producto = %s", (id_producto,))
+		precio_unitario = cur.fetchone()
 
-	# Si no se encontro, saltamos a la siguiente iteracion del for
-	if precio_unitario is None:
-		continue
-	precio_unitario = precio_unitario[0]
+		# Si no se encontro, saltamos a la siguiente iteracion del for
+		if precio_unitario is None:
+			continue
+		precio_unitario = precio_unitario[0]
 
-	# Cantidad comprada
-	cantidad = random.randint(1, 200)
+		# Cantidad comprada
+		cantidad = random.randint(1, 200)
 
-	cur.execute("INSERT INTO productos_venta (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
-               (id_producto, id_compra, precio_unitario, cantidad)
-               )
+		cur.execute("INSERT INTO productos_venta (id_producto, id_venta, precio_unitario, cantidad) VALUES (%s, %s, %s, %s)",
+				(id_producto, id_compra, precio_unitario, cantidad)
+				)
+	except Exception:
+		...
 conn.commit()
 
 cur.close()
